@@ -1,0 +1,26 @@
+package com.api;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class ApiReq {
+    private String caseNo;
+    private VerifyOtpReq verifyOtpReq;
+}
+
+public class VerifyOtpReq {
+    private String amt;
+    private String mac;
+
+    // getters 和 setters
+}

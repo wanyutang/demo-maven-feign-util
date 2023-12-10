@@ -1,6 +1,5 @@
 package com.api.util;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,8 +21,11 @@ public class MapToFormUtil {
         StringJoiner sj = new StringJoiner(String.valueOf(QUERY_DELIMITER));
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             if (entry.getValue() instanceof List<?>) {
-                String listFormData = listMapToFormData(entry.getKey(), toListOfMaps(entry.getValue()), charset);
+                String listFormData = listMapToFormData(entry.getKey(), convertToListOfMaps(entry.getValue()), charset);
                 sj.add(listFormData);
+            } else if (entry.getValue() instanceof Map<?, ?>) {
+                String subMapFormData = subMapToFormData(entry, charset);
+                sj.add(subMapFormData);
             } else {
                 String key = entry.getKey();
                 String value = entry.getValue().toString();
@@ -33,19 +35,37 @@ public class MapToFormUtil {
         return sj.toString();
     }
 
+    public static String subMapToFormData(Map.Entry<String, Object> entry, Charset charset) {
+        StringJoiner sj = new StringJoiner(String.valueOf(QUERY_DELIMITER));
+        for (Map.Entry<String, Object> subEntry : convertToMapOfObject(entry.getValue()).entrySet()) {
+            String key = entry.getKey() + "." + subEntry.getKey();
+            String value = subEntry.getValue().toString();
+            sj.add(encode(key, charset) + EQUAL_SIGN + encode(value, charset));
+        }
+        return sj.toString();
+    }
+
     public static String entryToFormData(Map.Entry<String, Object> entry, Charset charset) {
         String key = entry.getKey();
         Object value = entry.getValue();
 
         if (value instanceof Collection<?>) {
-            return listMapToFormData(key, toListOfMaps(value) , charset);
+            return listMapToFormData(key, convertToListOfMaps(value), charset);
         } else {
             return encode(key, charset) + EQUAL_SIGN + encode(value.toString(), charset);
         }
     }
 
     @SuppressWarnings("unchecked")
-    public static List<Map<String, Object>> toListOfMaps(Object obj) {
+    public static Map<String, Object> convertToMapOfObject(Object obj) {
+        if (obj instanceof Map<?, ?>) {
+            return (Map<String, Object>) obj;
+        }
+        return null;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<Map<String, Object>> convertToListOfMaps(Object obj) {
         if (obj instanceof List<?>) {
             List<?> list = (List<?>) obj;
             List<Map<String, Object>> maps = new ArrayList<>();
@@ -67,8 +87,13 @@ public class MapToFormUtil {
             Map<String, Object> map = list.get(i);
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 String key = String.format("%s[%d].%s", prefix, i, entry.getKey());
-                String value = entry.getValue().toString();
-                sj.add(encode(key, charset) + EQUAL_SIGN + value);
+                if (entry.getValue() instanceof Map<?, ?>) {
+                    String subMapFormData = subMapToFormData(entry, charset);
+                    sj.add(subMapFormData);
+                } else {
+                    String value = entry.getValue().toString();
+                    sj.add(encode(key, charset) + EQUAL_SIGN + value);
+                }
             }
         }
         return sj.toString();
