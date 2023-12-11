@@ -1,7 +1,6 @@
-# Demo Maven Feign Util
+# Lab Springboot Maven
 
-## 簡介
-這個專案是一個基於 Spring Boot 和 Maven 的教學實驗室，專注於展示如何使用 `spring-cloud-starter-openfeign` 來實現微服務間的通信。本專案將演示如何設置和使用 Feign 客戶端來簡化 HTTP API 的呼叫。
+基於 Spring Boot 和 Maven 的 Lab。
 
 ## 開始前的準備
 - Java 8 或以上版本
@@ -19,19 +18,6 @@ mvn spring-boot:run
 - `pom.xml`：定義了專案依賴和插件。
 - `src/main/java`：包含應用程序的源代碼。
 - `src/main/resources`：包含應用程序的配置文件。
-
-## 功能模塊
-- **Feign 客戶端實現**：演示如何使用 Feign 進行服務間的呼叫。
-- **錯誤處理**：包含基本的錯誤處理和異常捕獲機制。
-- **日誌記錄**：展示如何在應用中實現日誌記錄。
-
-## 如何貢獻
-對於任何想要貢獻的開發者：
-- Fork 專案
-- 創建您自己的分支 (`git checkout -b feature/AmazingFeature`)
-- 提交您的改變 (`git commit -m 'Add some AmazingFeature'`)
-- 推送到分支 (`git push origin feature/AmazingFeature`)
-- 打開一個 Pull Request
 
 ## 聯繫方式
 如有任何疑問或建議，請通過以下方式聯繫我：[wanyutang@gmail.com]()
