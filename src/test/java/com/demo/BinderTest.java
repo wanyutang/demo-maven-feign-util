@@ -58,7 +58,7 @@ public class BinderTest {
         propertyValues.add("caseSeqno", "123");
         propertyValues.add("subReq.amt", "amt001");
         propertyValues.add("subReq.mac", "mac001");
-        propertyValues.add("verifyTime", "2023-12-10T12:51:53.294");
+        propertyValues.add("verifyTime", "2023-03-21T15:30:45.123");//2023-12-10T12:51:53.294
 
         log.info("Form String: caseSeqno=123&subReq.amt=amt001&subReq.mac=mac001&verifyTime=2023-12-10T12:51:53.294");
 
