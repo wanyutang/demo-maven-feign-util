@@ -14,13 +14,10 @@ mvn spring-boot:run
 ```
 
 ## 架構解析
-本專案採用標準的 Maven 架構，包含以下主要部分：
+Maven 架構，包含以下主要部分：
 - `pom.xml`：定義了專案依賴和插件。
 - `src/main/java`：包含應用程序的源代碼。
 - `src/main/resources`：包含應用程序的配置文件。
-
-## 聯繫方式
-如有任何疑問或建議，請通過以下方式聯繫我：[wanyutang@gmail.com]()
 
 ## 參考來源
 - [Spring Cloud OpenFeign 整合指南](https://gist.github.com/wanyutang/2747c64766d08a609837246559f3111b)
