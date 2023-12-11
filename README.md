@@ -1,7 +1,7 @@
 # Demo Maven Feign Util
 
 ## 簡介
-這個專案是一個基於 Spring Boot 和 Maven 的教學實驗室，專注於展示如何使用 `spring-cloud-starter-openfeign` 來實現微服務間的通信。透過本專案，您將學習到如何設置和使用 Feign 客戶端來簡化 HTTP API 的呼叫。
+這個專案是一個基於 Spring Boot 和 Maven 的教學實驗室，專注於展示如何使用 `spring-cloud-starter-openfeign` 來實現微服務間的通信。本專案將演示如何設置和使用 Feign 客戶端來簡化 HTTP API 的呼叫。
 
 ## 開始前的準備
 - Java 8 或以上版本
@@ -9,7 +9,7 @@
 - 基本的 Spring Boot 知識
 
 ## 安裝與啟動
-克隆專案後，使用 Maven 命令來啟動：
+Clone 專案後，使用 Maven 命令來啟動：
 ```bash
 mvn spring-boot:run
 ```
@@ -34,7 +34,7 @@ mvn spring-boot:run
 - 打開一個 Pull Request
 
 ## 聯繫方式
-如有任何疑問或建議，請通過以下方式聯繫我：[您的聯繫方式]
+如有任何疑問或建議，請通過以下方式聯繫我：[wanyutang@gmail.com]()
 
-## 許可證
-該專案遵循 [MIT 許可證](LICENSE)。
+## 參考來源
+- [Spring Cloud OpenFeign 整合指南](https://gist.github.com/wanyutang/2747c64766d08a609837246559f3111b)
