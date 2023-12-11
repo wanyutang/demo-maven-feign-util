@@ -29,10 +29,32 @@ import lombok.extern.slf4j.Slf4j;
 public class BinderTest {
 
     @Test
+    public void array() throws JsonMappingException, JsonProcessingException {
+        ApiReq apiReq = ApiReq.builder()
+                .caseSeqno(123)
+                .verifyTime(LocalDateTime.now())
+                .arr(new String[]{"元素1", "元素2"})
+                .subReq(ApiReq.SubReq.builder()
+                        .amt("amt001")
+                        .mac("mac001")
+                        .build())
+                .build();
+        Map<String, Object> data;
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        objectMapper.registerModule(new JavaTimeModule());
+        data = objectMapper.readValue(objectMapper.writeValueAsString(apiReq),
+                    new TypeReference<Map<String, Object>>() {});
+        log.debug("res: mapData = {}", data);
+        log.debug("res: dataMap = {}",  MapToFormUtil.mapToFormData(data,StandardCharsets.UTF_8));
+    }
+
+    @Test
     public void objectMapper() throws JsonMappingException, JsonProcessingException {
         ApiReq apiReq = ApiReq.builder()
                 .caseSeqno(123)
                 .verifyTime(LocalDateTime.now())
+                .arr(new String[]{"元素1", "元素2"})
                 .subReq(ApiReq.SubReq.builder()
                         .amt("amt001")
                         .mac("mac001")

@@ -23,6 +23,7 @@ public class ApiReq {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     private LocalDateTime verifyTime;
+    private String[] arr;
 
     @Data
     @Builder
